@@ -1,0 +1,462 @@
+//
+//  20DEC_INSTRUCTION.swift
+//  datamodel
+//
+//  Created by student-2 on 20/12/24.
+//
+
+import Foundation
+import UIKit
+
+// MARK: - USER STRUCT
+struct User {
+    var id: Int // Unique identifier for the user
+    var name: String // User's full name
+    var email: String // User's email address
+    var profilePictureURL: String? // URL of the user's profile picture
+    var region: String // User's region or location
+    var profession: String // User's profession or job title
+    var connection: Int? // ID of the user's primary connection or mentor (optional)
+    var portfolio: Portfolio // User's portfolio with profile links
+    
+    // Private initializer to ensure proper instantiation
+    private init(id: Int, name: String, email: String, profilePictureURL: String?, region: String, profession: String, connection: Int?, portfolio: Portfolio) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.profilePictureURL = profilePictureURL
+        self.region = region
+        self.profession = profession
+        self.connection = connection
+        self.portfolio = portfolio
+    }
+    
+    // Public function to create a User instance
+    static func createUser(id: Int, name: String, email: String, profilePictureURL: String?, region: String, profession: String, connection: Int?, portfolio: Portfolio) -> User {
+        return User(id: id, name: name, email: email, profilePictureURL: profilePictureURL, region: region, profession: profession, connection: connection, portfolio: portfolio)
+    }
+}
+
+struct Portfolio {
+    var linkedin: String? // Link to the user's LinkedIn profile (optional)
+    var github: String? // Link to the user's GitHub profile (optional)
+    var personalWebsite: String? // Link to the user's personal website or portfolio (optional)
+    
+    // Private initializer to ensure proper instantiation
+    private init(linkedin: String?, github: String?, personalWebsite: String?) {
+        self.linkedin = linkedin
+        self.github = github
+        self.personalWebsite = personalWebsite
+    }
+    
+    // Public function to create a Portfolio instance
+    static func createPortfolio(linkedin: String?, github: String?, personalWebsite: String?) -> Portfolio {
+        return Portfolio(linkedin: linkedin, github: github, personalWebsite: personalWebsite)
+    }
+}
+
+// Home tab bar
+// MARK: - NEARWORKSPACE
+struct NearWorkspace {
+    var title: String // Title of the workspace
+    var rating: Double // Rating of the workspace
+    var distance: String // Distance from the user's location
+    var image: String // URL or name of the main image
+    var description: String // Short description of the workspace
+    var ratingIcon: IconType // Enum for rating icon
+    var distanceIcon: IconType // Enum for distance icon
+}
+
+enum IconType: String, CaseIterable {
+    case star = "star_icon.png"
+    case location = "location_icon.png"
+    case none = "default_icon.png"
+}
+
+// MARK: - NEWJOBOPPORTUNITY
+struct NewJobOpportunity {
+    var image: String // URL or name of the image for the job opportunity
+    var title: String // Title of the job opportunity
+    var description: String // Description of the job opportunity
+    var postedBy: String // Name or ID of the user who posted the job
+    var remuneration: String // Salary or remuneration offered for the role
+    var location: String // Location where the job is based
+    var experience: String // Required experience for the role
+    var workRole: String // Role description (e.g., "Software Engineer")
+    var postedByIcon: IconTypeforJob // Enum for the "Posted by" icon
+    var remunerationIcon: IconTypeforJob // Enum for the "Remuneration" icon
+    var locationIcon: IconTypeforJob // Enum for the "Location" icon
+    var experienceIcon: IconTypeforJob // Enum for the "Experience" icon
+    var workRoleIcon: IconTypeforJob // Enum for the "Work Role" icon
+    
+    // Private initializer to ensure proper instantiation
+    private init(image: String, title: String, description: String, postedBy: String, remuneration: String, location: String, experience: String, workRole: String, postedByIcon: IconTypeforJob, remunerationIcon: IconTypeforJob, locationIcon: IconTypeforJob, experienceIcon: IconTypeforJob, workRoleIcon: IconTypeforJob) {
+        self.image = image
+        self.title = title
+        self.description = description
+        self.postedBy = postedBy
+        self.remuneration = remuneration
+        self.location = location
+        self.experience = experience
+        self.workRole = workRole
+        self.postedByIcon = postedByIcon
+        self.remunerationIcon = remunerationIcon
+        self.locationIcon = locationIcon
+        self.experienceIcon = experienceIcon
+        self.workRoleIcon = workRoleIcon
+    }
+    
+    // Public function to create a NewJobOpportunity instance
+    static func createJobOpportunity(image: String, title: String, description: String, postedBy: String, remuneration: String, location: String, experience: String, workRole: String, postedByIcon: IconTypeforJob, remunerationIcon: IconTypeforJob, locationIcon: IconTypeforJob, experienceIcon: IconTypeforJob, workRoleIcon: IconTypeforJob) -> NewJobOpportunity {
+        return NewJobOpportunity(image: image, title: title, description: description, postedBy: postedBy, remuneration: remuneration, location: location, experience: experience, workRole: workRole, postedByIcon: postedByIcon, remunerationIcon: remunerationIcon, locationIcon: locationIcon, experienceIcon: experienceIcon, workRoleIcon: workRoleIcon)
+    }
+}
+
+enum IconTypeforJob: String, CaseIterable {
+    case user = "user_icon.png"
+    case money = "money_icon.png"
+    case location = "location_icon.png"
+    case experience = "experience_icon.png"
+    case role = "role_icon.png"
+}
+
+// MARK: - EXPLORENEWEVENTS
+struct ExploreNewEvent {
+    var image: String // URL or name of the image for the event
+    var title: String // Title of the event
+    var date: String // Date of the event
+    var time: String // Time of the event
+    var eventDetails: String // Details or description of the event
+    var benefitsOfJoining: String // Benefits of joining the event
+    
+    // Private initializer to ensure proper instantiation
+    private init(image: String, title: String, date: String, time: String, eventDetails: String, benefitsOfJoining: String) {
+        self.image = image
+        self.title = title
+        self.date = date
+        self.time = time
+        self.eventDetails = eventDetails
+        self.benefitsOfJoining = benefitsOfJoining
+    }
+    
+    // Public function to create an ExploreNewEvent instance
+    static func createEvent(image: String, title: String, date: String, time: String, eventDetails: String, benefitsOfJoining: String) -> ExploreNewEvent {
+        return ExploreNewEvent(image: image, title: title, date: date, time: time, eventDetails: eventDetails, benefitsOfJoining: benefitsOfJoining)
+    }
+}
+
+// MARK: - LIVEJOBLISTING
+struct LiveJobListing {
+    var title: String // Title of the job
+    var description: String // Description of the job
+    var postedBy: String // Name or ID of the user who posted the job
+    var remuneration: String // Remuneration offered for the role
+    var location: String // Location of the job
+    var experience: String // Required experience for the job role
+    var workRole: String // Role description (e.g., "Software Engineer")
+    var imageIcon: IconTypeforJobs // Icons for postedBy, remuneration, location, experience, and workRole
+    var jobStatus: JobStatus // Segment control (LIVE, POSTED, APPLIED)
+    
+    // Private initializer to ensure controlled instantiation
+    private init(title: String, description: String, postedBy: String, remuneration: String, location: String, experience: String, workRole: String, imageIcon: IconTypeforJobs, jobStatus: JobStatus) {
+        self.title = title
+        self.description = description
+        self.postedBy = postedBy
+        self.remuneration = remuneration
+        self.location = location
+        self.experience = experience
+        self.workRole = workRole
+        self.imageIcon = imageIcon
+        self.jobStatus = jobStatus
+    }
+    
+    // Public static function to create a LiveJobListing instance
+    static func createJobListing(title: String, description: String, postedBy: String, remuneration: String, location: String, experience: String, workRole: String, imageIcon: IconTypeforJobs, jobStatus: JobStatus) -> LiveJobListing {
+        return LiveJobListing(title: title, description: description, postedBy: postedBy, remuneration: remuneration, location: location, experience: experience, workRole: workRole, imageIcon: imageIcon, jobStatus: jobStatus)
+    }
+}
+
+// Enum for job status
+enum JobStatus: String, CaseIterable {
+    case live = "LIVE"
+    case posted = "POSTED"
+    case applied = "APPLIED"
+}
+
+// Enum for icons related to the job fields
+enum IconTypeforJobs: String {
+    case user = "user_icon.png" // Icon for the "Posted by" field
+    case money = "money_icon.png" // Icon for the "Remuneration" field
+    case location = "location_icon.png" // Icon for the "Location" field
+    case experience = "experience_icon.png" // Icon for the "Experience" field
+    case role = "role_icon.png" // Icon for the "Work Role" field
+}
+
+// Example usage of the LiveJobListing struct
+let liveJob = LiveJobListing.createJobListing(
+    title: "iOS Developer",
+    description: "An exciting opportunity to work with cutting-edge iOS technologies.",
+    postedBy: "John Doe",
+    remuneration: "$80,000/year",
+    location: "San Francisco, CA",
+    experience: "3+ years",
+    workRole: "Mobile Developer",
+    imageIcon: .user,
+    jobStatus: .live
+)
+
+// MARK: - JOBLISTINGENTITY
+
+struct JobListingEntity {
+    var title: String // Title of the job listing
+    var heading: String // Urgency heading (e.g., "Urgent required")
+    var nameOfJob: String // Name or title of the job
+    var location: String // Location where the job is based
+    var experience: String // Required experience for the job
+    var workRole: String // Description of the job role
+    var postedByIcon: IconTypeforJobs // Icon for the "Posted by" field
+    var remunerationIcon: IconTypeforJobs // Icon for the "Remuneration" field
+    var locationIcon: IconTypeforJobs // Icon for the "Location" field
+    var experienceIcon: IconTypeforJobs // Icon for the "Experience" field
+    var workRoleIcon: IconTypeforJobs // Icon for the "Work Role" field
+    
+    // Private initializer for controlled instantiation
+    private init(title: String, heading: String, nameOfJob: String, location: String, experience: String, workRole: String, postedByIcon: IconTypeforJobs, remunerationIcon: IconTypeforJobs, locationIcon: IconTypeforJobs, experienceIcon: IconTypeforJobs, workRoleIcon: IconTypeforJobs) {
+        self.title = title
+        self.heading = heading
+        self.nameOfJob = nameOfJob
+        self.location = location
+        self.experience = experience
+        self.workRole = workRole
+        self.postedByIcon = postedByIcon
+        self.remunerationIcon = remunerationIcon
+        self.locationIcon = locationIcon
+        self.experienceIcon = experienceIcon
+        self.workRoleIcon = workRoleIcon
+    }
+    
+    // Public static function to create a JobListingEntity instance
+    static func createJobEntity(title: String, heading: String, nameOfJob: String, location: String, experience: String, workRole: String, postedByIcon: IconTypeforJobs, remunerationIcon: IconTypeforJobs, locationIcon: IconTypeforJobs, experienceIcon: IconTypeforJobs, workRoleIcon: IconTypeforJobs) -> JobListingEntity {
+        return JobListingEntity(title: title, heading: heading, nameOfJob: nameOfJob, location: location, experience: experience, workRole: workRole, postedByIcon: postedByIcon, remunerationIcon: remunerationIcon, locationIcon: locationIcon, experienceIcon: experienceIcon, workRoleIcon: workRoleIcon)
+    }
+}
+
+// Example usage of JobListingEntity struct
+let jobEntity = JobListingEntity.createJobEntity(
+    title: "Urgent Hiring: Senior iOS Developer",
+    heading: "Urgent required",
+    nameOfJob: "Senior iOS Developer",
+    location: "New York, NY",
+    experience: "5+ years",
+    workRole: "Lead iOS Engineer",
+    postedByIcon: .user,
+    remunerationIcon: .money,
+    locationIcon: .location,
+    experienceIcon: .experience,
+    workRoleIcon: .role
+)
+
+// MARK: - LIVEMARKETPROFILE
+struct LiveMarketProfile {
+    var image: String // URL or name of the user's profile image
+    var name: String // Name of the professional
+    var email: String // Email of the professional
+    var location: String // Location of the professional
+    var linkedIn: String? // LinkedIn profile URL (optional)
+    var description: String // Brief description of the professional
+    var noOfConnections: Int // Number of connections the professional has
+    var activeProject: String // The active project the professional is currently working on
+    
+    // Private initializer to ensure proper instantiation
+    private init(image: String, name: String, email: String, location: String, linkedIn: String?, description: String, noOfConnections: Int, activeProject: String) {
+        self.image = image
+        self.name = name
+        self.email = email
+        self.location = location
+        self.linkedIn = linkedIn
+        self.description = description
+        self.noOfConnections = noOfConnections
+        self.activeProject = activeProject
+    }
+    
+    // Public function to create a LiveMarketProfile instance
+    static func createLiveMarketProfile(image: String, name: String, email: String, location: String, linkedIn: String?, description: String, noOfConnections: Int, activeProject: String) -> LiveMarketProfile {
+        return LiveMarketProfile(image: image, name: name, email: email, location: location, linkedIn: linkedIn, description: description, noOfConnections: noOfConnections, activeProject: activeProject)
+    }
+}
+let marketProfile = LiveMarketProfile.createLiveMarketProfile(
+    image: "https://example.com/profile.jpg",
+    name: "Jane Doe",
+    email: "janedoe@example.com",
+    location: "San Francisco, CA",
+    linkedIn: "https://www.linkedin.com/in/janedoe",
+    description: "Experienced iOS developer specializing in mobile app development.",
+    noOfConnections: 250,
+    activeProject: "Developing a new iOS app for a leading tech company"
+)
+
+// MARK: - NEARBYWORKSPACE (iCO-WORK SPACE)
+struct NearByWorkspace {
+    var image: String // URL or name of the image for the workspace
+    var title: String // Title of the workspace
+    var description: String // Description of the workspace
+    var rating: Double // Rating of the workspace (e.g., 4.5)
+    var distance: String // Distance from the user's current location (e.g., "2.3 km")
+    
+    // Private initializer to ensure proper instantiation
+    private init(image: String, title: String, description: String, rating: Double, distance: String) {
+        self.image = image
+        self.title = title
+        self.description = description
+        self.rating = rating
+        self.distance = distance
+    }
+    
+    // Public function to create a NearByWorkspace instance
+    static func createNearByWorkspace(image: String, title: String, description: String, rating: Double, distance: String) -> NearByWorkspace {
+        return NearByWorkspace(image: image, title: title, description: description, rating: rating, distance: distance)
+    }
+}
+
+let nearbyWorkspace = NearByWorkspace.createNearByWorkspace(
+    image: "https://example.com/workspace-image.jpg",
+    title: "Cozy Coworking Space",
+    description: "A modern coworking space with all amenities and a great community.",
+    rating: 4.8,
+    distance: "2.3 km"
+)
+
+// MARK: - LIVEJOBSINWORKSPACE
+struct LiveJobsInWorkspace {
+    var title: String // Title of the job in the workspace
+    var image: String // Image associated with the job
+    var workspaceName: String // Name of the workspace where the job is listed
+    var numberOfJobsInRegion: Int // Number of jobs in the region
+    var postedBy: String // Name or ID of the user who posted the job
+    var location: String // Location where the job is based
+    var remuneration: String // Salary or remuneration offered for the job
+    var experience: String // Required experience for the job role
+    var workRole: String // Role description (e.g., "Software Engineer")
+    var numberOfJobsIcon: IconTypeForLiveJobs // Icon for the "Number of Jobs in Region" field
+    var postedByIcon: IconTypeForLiveJobs // Icon for the "Posted by" field
+    var locationIcon: IconTypeForLiveJobs // Icon for the "Location" field
+    var remunerationIcon: IconTypeForLiveJobs // Icon for the "Remuneration" field
+    var experienceIcon: IconTypeForLiveJobs // Icon for the "Experience" field
+    var workRoleIcon: IconTypeForLiveJobs // Icon for the "Work Role" field
+    
+    // Private initializer to ensure proper instantiation
+    private init(title: String, image: String, workspaceName: String, numberOfJobsInRegion: Int, postedBy: String, location: String, remuneration: String, experience: String, workRole: String, numberOfJobsIcon: IconTypeForLiveJobs, postedByIcon: IconTypeForLiveJobs, locationIcon: IconTypeForLiveJobs, remunerationIcon: IconTypeForLiveJobs, experienceIcon: IconTypeForLiveJobs, workRoleIcon: IconTypeForLiveJobs) {
+        self.title = title
+        self.image = image
+        self.workspaceName = workspaceName
+        self.numberOfJobsInRegion = numberOfJobsInRegion
+        self.postedBy = postedBy
+        self.location = location
+        self.remuneration = remuneration
+        self.experience = experience
+        self.workRole = workRole
+        self.numberOfJobsIcon = numberOfJobsIcon
+        self.postedByIcon = postedByIcon
+        self.locationIcon = locationIcon
+        self.remunerationIcon = remunerationIcon
+        self.experienceIcon = experienceIcon
+        self.workRoleIcon = workRoleIcon
+    }
+    
+    // Public function to create a LiveJobsInWorkspace instance
+    static func createLiveJobsInWorkspace(title: String, image: String, workspaceName: String, numberOfJobsInRegion: Int, postedBy: String, location: String, remuneration: String, experience: String, workRole: String, numberOfJobsIcon: IconTypeForLiveJobs, postedByIcon: IconTypeForLiveJobs, locationIcon: IconTypeForLiveJobs, remunerationIcon: IconTypeForLiveJobs, experienceIcon: IconTypeForLiveJobs, workRoleIcon: IconTypeForLiveJobs) -> LiveJobsInWorkspace {
+        return LiveJobsInWorkspace(title: title, image: image, workspaceName: workspaceName, numberOfJobsInRegion: numberOfJobsInRegion, postedBy: postedBy, location: location, remuneration: remuneration, experience: experience, workRole: workRole, numberOfJobsIcon: numberOfJobsIcon, postedByIcon: postedByIcon, locationIcon: locationIcon, remunerationIcon: remunerationIcon, experienceIcon: experienceIcon, workRoleIcon: workRoleIcon)
+    }
+}
+
+enum IconTypeForLiveJobs: String {
+    case jobsInRegion = "jobs_in_region_icon.png" // Icon for "Number of Jobs in Region"
+    case user = "user_icon.png" // Icon for the "Posted by" field
+    case location = "location_icon.png" // Icon for the "Location" field
+    case money = "money_icon.png" // Icon for the "Remuneration" field
+    case experience = "experience_icon.png" // Icon for the "Experience" field
+    case role = "role_icon.png" // Icon for the "Work Role" field
+}
+
+let liveJobInWorkspace = LiveJobsInWorkspace.createLiveJobsInWorkspace(
+    title: "Senior iOS Developer",
+    image: "https://example.com/job-image.jpg",
+    workspaceName: "Tech Co-working Hub",
+    numberOfJobsInRegion: 10,
+    postedBy: "Jane Smith",
+    location: "San Francisco, CA",
+    remuneration: "$90,000/year",
+    experience: "5+ years",
+    workRole: "iOS Developer",
+    numberOfJobsIcon: .jobsInRegion,
+    postedByIcon: .user,
+    locationIcon: .location,
+    remunerationIcon: .money,
+    experienceIcon: .experience,
+    workRoleIcon: .role
+)
+
+// MARK: - TREADINGFEED
+struct TrendingFeed {
+    let image: UIImage
+    let title: String
+    let date: String
+    let time: String
+    let description: String
+    let likeNumber: Int
+    let commentNumber: Int
+    let shareNumber: Int
+    let likeIcon: UIImage
+    let commentIcon: UIImage
+    let shareIcon: UIImage
+
+    // Private initializer to maintain a modular design
+    private init(image: UIImage, title: String, date: String, time: String, description: String, likeNumber: Int, commentNumber: Int, shareNumber: Int, likeIcon: UIImage, commentIcon: UIImage, shareIcon: UIImage) {
+        self.image = image
+        self.title = title
+        self.date = date
+        self.time = time
+        self.description = description
+        self.likeNumber = likeNumber
+        self.commentNumber = commentNumber
+        self.shareNumber = shareNumber
+        self.likeIcon = likeIcon
+        self.commentIcon = commentIcon
+        self.shareIcon = shareIcon
+    }
+    
+    // Static method for easy creation of a TrendingFeed instance
+    static func createTrendingFeed(image: UIImage, title: String, date: String, time: String, description: String, likeNumber: Int, commentNumber: Int, shareNumber: Int, likeIcon: UIImage, commentIcon: UIImage, shareIcon: UIImage) -> TrendingFeed {
+        return TrendingFeed(image: image, title: title, date: date, time: time, description: description, likeNumber: likeNumber, commentNumber: commentNumber, shareNumber: shareNumber, likeIcon: likeIcon, commentIcon: commentIcon, shareIcon: shareIcon)
+    }
+}
+
+// Profile Data Model
+// MARK: - PROFILE
+//struct Profile {
+//    let image: UIImage // Profile image
+//    let name: String // Name of the profile
+//    let location: String // Location of the profile (city/region)
+//    let email: String // Email address
+//    let numberOfConnections: Int // Number of connections in the profile
+//    let description: String // A brief description about the profile
+//    let activeProjects: [String] // List of active projects the person is working on
+//    let linkedLinks: [String] // List of URLs or linked profiles (e.g., LinkedIn, personal website)
+//    
+//    // Initializer for creating a profile instance
+//    private init(image: UIImage, name: String, location: String, email: String, numberOfConnections: Int, description: String, activeProjects: [String], linkedLinks: [String]) {
+//        self.image = image
+//        self.name = name
+//        self.location = location
+//        self.email = email
+//        self.numberOfConnections = numberOfConnections
+//        self.description = description
+//        self.activeProjects = activeProjects
+//        self.linkedLinks = linkedLinks
+//    }
+//    
+//    // Static method to create a profile
+//    static func createProfile(image: UIImage, name: String, location: String, email: String, numberOfConnections: Int, description: String, activeProjects: [String], linkedLinks: [String]) -> Profile {
+//        return Profile(image: image, name: name, location: location, email: email, numberOfConnections: numberOfConnections, description: description, activeProjects: activeProjects, linkedLinks: linkedLinks)
+//    }
+//}
